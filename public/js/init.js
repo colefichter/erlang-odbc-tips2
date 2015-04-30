@@ -1,5 +1,5 @@
 /*
-	Alpha by HTML5 UP
+	Prologue by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -9,46 +9,36 @@
 	skel.init({
 		reset: 'full',
 		breakpoints: {
-			global:		{ range: '*', href: 'css/style.css', containers: '60em', grid: { gutters: ['2em', 0] } },
-			wide:		{ range: '-1680', href: 'css/style-wide.css' },
-			normal:		{ range: '-1280', href: 'css/style-normal.css', viewport: { scalable: false } },
-			narrow:		{ range: '-980', href: 'css/style-narrow.css', containers: '90%' },
-			narrower:	{ range: '-840', href: 'css/style-narrower.css', containers: '90%!', grid: { zoom: 2 } },
-			mobile:		{ range: '-736', href: 'css/style-mobile.css', containers: '100%!' },
-			mobilep:	{ range: '-480', href: 'css/style-mobilep.css', grid: { zoom: 3 } }
-		},
-		plugins: {
+			'global':	{ range: '*', href: 'css/style.css', containers: 1400, grid: { gutters: 40 }, viewport: { scalable: false } },
+			'wide':		{ range: '961-1880', href: 'css/style-wide.css', containers: 1200, grid: { gutters: 40 } },
+			'normal':	{ range: '961-1620', href: 'css/style-normal.css', containers: 960, grid: { gutters: 40 } },
+			'narrow':	{ range: '961-1320', href: 'css/style-narrow.css', containers: '100%', grid: { gutters: 20 } },
+			'narrower':	{ range: '-960', href: 'css/style-narrower.css', containers: '100%', grid: { gutters: 15 } },
+			'mobile':	{ range: '-640', href: 'css/style-mobile.css', grid: { collapse: true } }
+		}
+	}, {
+		layers: {
 			layers: {
-
-				// Config.
-					config: {
-						mode: function() { return (skel.vars.isMobile ? 'transform' : 'position'); }
-					},
-
-				// Navigation Panel.
-					navPanel: {
-						animation: 'pushX',
-						breakpoints: 'narrower',
-						clickToHide: true,
-						height: '100%',
-						hidden: true,
-						html: '<div data-action="navList" data-args="nav"></div>',
-						orientation: 'vertical',
-						position: 'top-left',
-						side: 'left',
-						width: 250
-					},
-
-				// Navigation Button.
-					navButton: {
-						breakpoints: 'narrower',
-						height: '4em',
-						html: '<span class="toggle" data-action="toggleLayer" data-args="navPanel"></span>',
-						position: 'top-left',
-						side: 'top',
-						width: '6em'
-					}
-
+				sidePanel: {
+					hidden: true,
+					breakpoints: 'narrower',
+					position: 'top-left',
+					side: 'left',
+					animation: 'pushX',
+					width: 240,
+					height: '100%',
+					clickToClose: true,
+					html: '<div data-action="moveElement" data-args="header"></div>',
+					orientation: 'vertical'
+				},
+				sidePanelToggle: {
+					breakpoints: 'narrower',
+					position: 'top-left',
+					side: 'top',
+					height: '4em',
+					width: '5em',
+					html: '<div data-action="toggleLayer" data-args="sidePanel" class="toggle"></div>'
+				}
 			}
 		}
 	});
@@ -56,9 +46,18 @@
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body'),
-			$header = $('#header'),
-			$banner = $('#banner');
+			$body = $('body');
+			
+		// Disable animations/transitions until the page has loaded.
+			$body.addClass('is-loading');
+			
+			$window.on('load', function() {
+				$body.removeClass('is-loading');
+			});
+			
+		// CSS polyfills (IE<9).
+			if (skel.vars.IEVersion < 9)
+				$(':last-child').addClass('last-child');
 
 		// Forms (IE<10).
 			var $form = $('form');
@@ -77,32 +76,50 @@
 
 			}
 
-		// Dropdowns.
-			$('#nav > ul').dropotron({
-				alignment: 'right'
-			});
+		// Scrolly links.
+			$('.scrolly').scrolly();
 
-		// Header.
-		// If the header is using "alt" styling and #banner is present, use scrollwatch
-		// to revert it back to normal styling once the user scrolls past the banner.
-		// Note: This is disabled on mobile devices.
-			if (!skel.vars.isMobile
-			&&	$header.hasClass('alt')
-			&&	$banner.length > 0) {
+		// Nav.
+			var $nav_a = $('#nav a');
+			
+			// Scrolly-fy links.
+				$nav_a
+					.scrolly()
+					.on('click', function(e) {
 
-				$window.on('load', function() {
-
-					$banner.scrollwatch({
-						delay:		0,
-						range:		0.5,
-						anchor:		'top',
-						on:			function() { $header.addClass('alt reveal'); },
-						off:		function() { $header.removeClass('alt'); }
+						var t = $(this),
+							href = t.attr('href');
+						
+						if (href[0] != '#')
+							return;
+						
+						e.preventDefault();
+						
+						// Clear active and lock scrollzer until scrolling has stopped
+							$nav_a
+								.removeClass('active')
+								.addClass('scrollzer-locked');
+					
+						// Set this link to active
+							t.addClass('active');
+					
 					});
 
+			// Initialize scrollzer.
+				var ids = [];
+				
+				$nav_a.each(function() {
+					
+					var href = $(this).attr('href');
+					
+					if (href[0] != '#')
+						return;
+				
+					ids.push(href.substring(1));
+				
 				});
-
-			}
+				
+				$.scrollzer(ids, { pad: 200, lastHack: true });
 
 	});
 

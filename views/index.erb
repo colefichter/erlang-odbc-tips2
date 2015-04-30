@@ -1,113 +1,431 @@
 <%= partial :"partials/header" %>
-<body class="landing">
-<!-- Header -->
-<header id="header" class="alt">
-    <%= partial :"partials/menu" %>
-</header>
 
-<!-- Banner -->
-<section id="banner">
-    <h2>Erlang Tutorials</h2>
-    <p>Easy to follow guides to building applications with Erlang and <abbr title="Open Telecom Platform">OTP</abbr>.</p>
-</section>
 
-<!-- Main -->
-<section id="main" class="container">
+<div id="main">
     
-    <section class="box special">
-        <header class="major">
-            <h2>Focused. Concise. Practical.</h2>
-            <p>Browse the topics listed below to select an Erlang/OTP tutorial.
-            <br />
-            <em>These articles are focussed on how to build working systems in Erlang, so some familiarity of the basic language syntax is expected.
-            </em></p>
-        </header>
-    </section>
-            
-    <section class="box special features">
-        <div class="features-row">
-            <section>
-                <span class="icon major fa-cogs accent2"></span>
-                <h3>MapReduce</h3>
-                <p>This three-part series will teach you how to build a map reduce cluster with replication and automatic fail-over.</p>
-                <ul class="actions">
-                    <li><a href="mapreduce1" class="button">Start Reading</a></li>
-                </ul>
-            </section>
-            <section>
-                <span class="icon major fa-cubes accent5"></span>
-                <h3>Distributed Hash Table</h3>
-                <p>A three-part series in which we build a peer-to-peer, scalable, distributed hash table.</p>
-                <ul class="actions">
-                    <li><a href="dht1" class="button">Start Reading</a></li>
-                </ul>
-            </section>
-        </div>
 
-        <div class="features-row">
-            <section>
-                <span class="icon major fa-key accent4"></span>
-                <h3>Key/Value Server</h3>
-                <p>In this two-part series we build a persistent key/value storage server.</p>
-                <ul class="actions">
-                    <li><a href="kv1" class="button">Start Reading</a></li>
-                </ul>
-            </section>
-            <section>
-                <span class="icon major fa-database accent3"></span>
-                <h3>ODBC Tips</h3>
-                <p>Helpful tips and programming patterns for users of Erlang ODBC with a SQL database.</p>
-                <ul class="actions">
-                    <li><a href="http://erlang-odbc-tips.colefichter.ca" class="button">Start Reading</a></li>
-                </ul>
-            </section>
+    <!-- Intro -->
+    <section id="top" class="one dark cover">
+        <div class="container">
+            <header>
+                <h2 class="alt">Erlang ODBC Tips</h2>
+                <h3>A collection of helpful hints for developers using Erlang and ODBC.</h3>
+                <p>Using Erlang's ODBC (Open Database Connectivity) support to access a SQL database can be an exercise in frustration, but this guide will get you started in no time.</p>
+            </header>           
+            <footer>
+                <a href="#quickstart" class="button scrolly">Let's get started!</a>
+            </footer>
         </div>
-
-        <!--
-        <div class="features-row">
-            <section>
-                <span class="icon major fa-cloud accent4"></span>
-                <h3>Sed feugiat</h3>
-                <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-            <section>
-                <span class="icon major fa-lock accent5"></span>
-                <h3>Enim phasellus</h3>
-                <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-        </div>
-        -->
     </section>
         
-    <div class="row">
-        <div class="6u 12u(2)">
+    <!-- Quickstart -->
+    <section id="quickstart" class="two">
+        <div class="container"> 
+            <header>
+                <h2>First Things First</h2>
+            </header>
+            <p class="alert alert-info">
+                <span class="icon fa-graduation-cap"></span>
+                This guide <em>should</em> be accessible to everyone, but we assume you have some experience building Erlang OTP applications. If you come across something you don't recognize, checkout the excellent <a href="http://learnyousomeerlang.com/">Learn You Some Erlang</a> on-line book.
+            </p>                
+            <p>If you work with Erlang long enough, you'll find yourself needing to connect to a SQL database to interact with a legacy system or to store data that demands strong consistency. To achieve this, you'll need to use ODBC. Erlang ships with native ODBC support as part of the standard OTP libraries, so it's available in every installation without any extra effort.
+            </p>
+            <h3>Where  To Get Help</h3>
+            <p>
+                If you're using Erlang ODBC for the first time, you're <em>going</em> to need some extra help at some point (perhaps that's why you're here). Here are some good resources to check out if you get into a pickle:
+            </p>
+            <ul class="bulletlist">
+                <li>
+                    The official Erlang ODBC <a href="http://www.erlang.org/doc/apps/odbc/getting_started.html">getting started guide</a>.
+                </li>
+                <li>
+                    Details of the ODBC <a href="http://www.erlang.org/doc/man/odbc.html">API</a>.
+                </li>
+                <li>
+                    The official Erlang ODBC <a href="http://www.erlang.org/doc/apps/odbc/odbc.pdf">reference manual</a> (as PDF).
+                </li>
+            </ul>
 
-            <section class="box special">
-                <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-                <h3>About Cole Fichter</h3>
-                <p>I'm a top-notch developer in Edmonton, Alberta, Canada. I work in a variety of languages, but Erlang is my favourite.</p>
-                <ul class="actions">
-                    <li><a href="http://www.colefichter.ca" class="button alt">Personal Website</a></li>
-                </ul>
-            </section>
+            <h3>ODBC and Mac OSX 10.9</h3>
+            <p>Newer versions of Mac OSX (10.9 for sure) may not include unixodbc, which Erlang ODBC relies on. Trevor Brown (<a href="https://twitter.com/Stratus3D/status/526754811178651648">@Stratus3D</a>) has written an <a href="http://stratus3d.com/blog/2014/10/24/install-erlang-16-on-mac-osx-10-dot-9-with-kerl/" title="Install Erlang 16 on Mac OSX 10.9 With Kerl">excellent guide explaining the issue</a> with detailed steps to resolve it.
+            </p>
+
+            <h3>Preparing To Connect</h3>
+            <p>An ODBC connection requires a DSN (Data Source Name) to be configured on the system. Unfortunately, Erlang ODBC does not support file DSNs, so the DSN must be configured using the Windows ODBC configuration utilities.                
+            </p>
+            <p>Stata has published an excellent tutorial <a href="http://www.stata.com/support/faqs/data-management/configuring-odbc-win/"> explaining how to set up a Windows Data Source Name</a>. Be sure to follow the instructions for your version of Windows. Also, an ODBC DSN can be either a User DSN or a System DSN. A User DSN is only available to the user who created it, while a System DSN is available to all users of the local system.                 
+            </p>
+            <p class="alert alert-danger">
+                <span class="icon fa-warning"></span> 
+                Don't forget to configure a DSN on each environment to which you plan to deploy your compiled Erlang release! The lack of support for file DSNs means you cannot distribute the DSN configuration as part of an Erlang release package. Sadly, you'll need to perform this step manually for each machine on which you wish to run your application.
+            </p>
+            <footer>
+                <a href="#connecting" class="button scrolly">It's time to connect!</a>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Connecting -->
+    <section id="connecting" class="three">
+        <div class="container">
+            <header>
+                <h2>Connecting</h2>
+            </header>
+            <p>
+                The first step to using ODBC in Erlang is to declare a dependency on the ODBC OTP application and ensure that it has started. If you use a build system like <a href="https://github.com/basho/rebar">Rebar</a> you'll need to declare a dependency on <code>odbc</code> in the applications list inside your <code>reltool.config</code> file:
+            </p>
+            <pre class="brush: erlang">
+            ...
+            {rel, "MyApp", "1.0.0",
+                [kernel,
+                 stdlib,
+                 odbc]
+            },
+            ...
+            </pre>
+            <p>If you're using a bootstrap script for development, or you are manually starting the applications you need, simply add a line to start the <code>odbc</code> application to your initialization routine:
+            <pre class="brush: erlang">
+            -module(myapp_bootstrap).
+            -export([start/0]).
+
+            start() ->
+                odbc:start(),   
+                application:load(myapp),
+                application:start(myapp).
+            </pre>
+            <p>A final alternative is to use a command line argument when starting the shell:</p>
+            <pre class="brush: erlang;">
+            erl -s odbc start
+            </pre> 
+
+            <p class="alert alert-info">
+                <span class="icon fa-cogs"></span>
+                You can ensure that the <code>odbc</code> OTP application is running by typing <code>application:which_applications().</code> into the Erlang shell and looking for a line like <code>{odbc,"Erlang ODBC application","2.10.18"}</code>.
+            </p>
+
+            <p>At this point, you should have a working environment with all the dependencies that you need to connect to a SQL database. The last step to get up and running is to gather your connection details into a connection string and attempt a simple SQL query.</p>
+            <p>The connection string requires three pieces of information: the name of the DSN that you configured earlier, the SQL login name, and the SQL password. Normally, we'd store this information in the application configuration file, but for this guide we'll declare it as a string variable for simplicity:
+            </p>
+            <pre class="brush: erlang">
+                ConnectionString = "DSN=MyAppDSN;UID=me;PWD=secret"
+            </pre>
+            <p>The name of the DSN, in this case <code>MyAppDSN</code> must exactly match the name of the DSN that you created in the Windows ODBC tool. Of course the user name and password must be legitimate credentials for your SQL instance.
+            </p>
+            <p>With the connection string ready, let's write a function to test our database connection with the simple query <code>SELECT 1;</code>:
+            </p>
+            <pre class="brush: erlang">
+            -module(myapp_sql_repo).
+            -export([test_connection/0]).
+
+            %%%==========================================
+            %%% Client API
+            %%%==========================================
+            test_connection() ->
+                Sql = "SELECT 1;",
+                Connection = connect(),
+                case odbc:sql_query(Connection, Sql) of
+                    {selected, Columns, Results} ->
+                      io:format("Success!~n Columns: ~p~n Results: ~p~n", 
+                        [Columns, Results]),
+                      ok;
+                    {error, Reason} ->
+                        {error, Reason}                           
+                end. 
+
+            %%%==========================================
+            %%% Internal functions
+            %%%==========================================
+            connect() ->
+                ConnectionString = "DSN=MyAppDSN;UID=me;PWD=secret",    
+                {ok, Conn} = odbc:connect(ConnectionString, []),
+                Conn.
+            </pre>
+            <p>We now have everything we need to test our ODBC connection on the SQL database. Let's give it a try:
+            </p>
+            <pre class="brush: bash">               
+                $>erl -s odbc start
+                Eshell V5.10  (abort with ^G)
+                1> myapp_sql_repo:test_connection().
+                Success!
+                 Columns: [[]]
+                 Results: [{1}]
+                ok
+            </pre>
+            <p>If something has gone wrong with SQL itself, you should see an <code>{error, Reason}</code> tuple with a relevant error message. Another common problem may occur if something is wrong with your connection string, preventing your program from establishing an ODBC connection. In that case, you'll see a message similar to:                
+            </p>
+            <pre class="brush: bash">               
+                $>erl -s odbc start
+                Eshell V5.10  (abort with ^G)
+                1> myapp_sql_repo:test_connection().                
+                ** exception error: no match of right hand side value {error,
+                                                                       "[Microsoft][ODBC Driver
+                Manager] Data source name not found and no default driver specified SQLSTATE IS:
+                 IM002 Connection to database failed."}
+                     in function  myapp_sql_repo:connect/0 (myapp_sql_repo.erl, line 33)
+                     in call from myapp_sql_repo:test_connection/0 (myapp_sql_repo.erl, line 9)
+                4>
+            </pre>
+            <p>The message clearly indicates that my DSN name (in the connection string) is incorrect.<p>
+        </div>
+    </section>
+
+    <!--
+    IDEAS FOR GOTCHAS:
+
+    - The 64-bit/32-bit problem
+    - NOCOUNT messing up pattern matching
+    - Buffer overflow/string truncation
+    - Unicode character encoding
+    - Wonky support for NVARCHAR(MAX)
+    - Sequentializing calls anti-pattern (floods mailbox due to IO time)
+
+    -->
+
+    <section id="gotchas" class="four">
+        <div class="container"> 
+            <header>
+                <h2>Gotchas (these will bite you in the butt)</h2>
+            </header>
+            <p>There are plenty of wonky things in the Erlang ODBC library that can rear up and bite you without warning. They are often poorly documented and difficult to troubleshoot. This section contains a collection of errors that we've seen in the wild, along with some advice in case you experience them.             
+            </p>
+
+            <h3>64-Bit/32-Bit Architecture Mismatch</h3>
+            <img src="images/32-bit.png" title="Setting up a 32-bit DSN" class="floatright w300" />
+            <br />
+            <img src="images/64-bit.png" title="Setting up a 64-bit DSN" class="floatright w300" />
+
+
+            <p>On a 64-bit Windows machine, it's possible to setup both 32-bit and 64-bit ODBC DSNs in the data sources setup dialog. This can potentially create a problem if you've installed a 32-bit build of Erlang/OTP, but you are trying to connect to a 64-bit ODBC DSN.</p>
+            <p>The first step to preventing or fixing this issue is to determine what type of Erlang build you're running, as this will determine which type of DSN you need. On Windows, running the <code>werl</code> program will open an Erlang shell including the details of the build:
+            </p>
+            <pre class="brush: bash">
+                $>werl
+                Erlang R16A (erts-5.10) [smp:8:8] [async-threads:10]
+
+                Eshell V5.10  (abort with ^G)
+                1> 
+            </pre>
+            <p>Note that the first line contains the Erlang version, <code>R16A</code>, and the ERTS version, <code>5.10</code>, but there is no indication of the architecture. That means this system is running a 32-bit build of Erlang and will need a 32-bit DSN. A 64-bit Erlang build will be clearly indicated with <code>[64-bit]</code> along with the other details:
+            </p>
+            <pre class="brush: bash">
+                >werl
+                Erlang R16A (erts-5.10) [64-bit] [smp:8:8] [async-threads:10]
+
+                Eshell V5.10  (abort with ^G)
+                1> 
+            </pre>
+            <img src="images/odbc_start_menu.png" title="Finding the correct DSN set up tool in the start menu" class="floatright w300" />
+            <p>Knowing exactly what architecture you need, you can now setup the matching type of DSN. Note that Windows has separate set up utilities for each, so you need to launch the correct one.</p>
+            <ul class="bulletlist">
+                <li>For a 64-bit DSN (on 64-bit Windows) run <code>c:\windows\system32\odbcad32.exe</code></li>
+                <li>For a 32-bit DSN (on 64-bit Windows) run <code>c:\windows\sysWOW64\odbcad32.exe</code></li>
+                <li>When searching for ODBC in the start menu, both utilities are clearly labeled.</li>
+            </ul>
+            <p>Looking at those paths, it seems counter-intuitive that the 32-bit config tool would be in a folder called <code>sysWOW64</code>, but there you have it.</p>
+            <p>If you've already set up a DSN, but you've inadvertently used the wrong architecture, you'll see an <code>architecture mismatch</code> error when trying to connect:
+            </p>
+            <pre class="brush: bash">
+                $>erl -s odbc start
+                Eshell V5.10  (abort with ^G)
+                1> c(myapp_sql_repo).
+                {ok,myapp_sql_repo}
+                2> myapp_sql_repo:test_connection().
+                ** exception error: no match of right hand side value {error,
+                                                                       "[Microsoft][ODBC Driver
+                Manager] The specified DSN contains an architecture mismatch between the Driver
+                and Application SQLSTATE IS: IM014 Connection to database failed."}
+                     in function  myapp_sql_repo:connect/0 (myapp_sql_repo.erl, line 33)
+                     in call from myapp_sql_repo:test_connection/0 (myapp_sql_repo.erl, line 9)
+                3>
+            </pre>
+            <p>If you encounter this error, simply replace the DSN with a new one using the correct architecture for your Erlang installation.</p>
+
+
+            <h3>Row Counts and Pattern Matching</h3>
+            <p>When you have a stored procedure or batch of SQL statements that include statements which return counts rather than result sets (for example, UPDATE, INSERT, DELETE) you may find that the returned record counts break the pattern matching in your Erlang code.
+            </p>
+            <p> Suppose an application needs to insert a new employee record into an <code>employee</code> table, and then return the updated list of all employees:
+            </p>
+            <pre class="brush: erlang">
+                create_employee(Name) ->
+                    Params = [{{sql_varchar, length(Name)}, [Name]}],
+                    Sql = "INSERT INTO employee(name) VALUES(?); SELECT * FROM employee;",
+                    Connection = connect(),
+                    case odbc:param_query(Connection, Sql, Params) of
+                        {selected, Columns, Results} ->
+                          % Results now contains the employee list
+                          ok;
+                        {error, Reason} ->
+                            {error, Reason}                           
+                    end. 
+            </pre>
+            <p>This code looks great, but when it runs it will produce a <code>bad_match</code> error in the <code>case</code> because the first item returned in the overall result set is the counter indicating that 1 row was inserted before the <code>SELECT</code> statement was executed. To fix the problem, add a <code>NOCOUNT</code> directive to prevent the counter from being returned:
+            </p>
+            <pre class="brush: erlang">
+                create_employee(Name) ->
+                    Params = [{{sql_varchar, length(Name)}, [Name]}],
+                    Sql = "SET NOCOUNT ON; INSERT INTO employee(name) VALUES(?); SELECT * FROM employee;",
+                    Connection = connect(),
+                    case odbc:param_query(Connection, Sql, Params) of
+                        {selected, Columns, Results} ->
+                          % Results now contains the employee list
+                          ok;
+                        {error, Reason} ->
+                            {error, Reason}                           
+                    end. 
+            </pre>
+            <p>This issue crops up frequently when using stored procedures, since the whole point of a procedure is to encapsulate several operations into a single, concise command. Fix it in the same way by adding <code>SET NOCOUNT ON</code> inside your stored procedure before you begin running other SQL commands.
+            </p>
+
+
+            <h3>Buffer Overflows and String Truncation</h3>
+            <p>One handy feature of Erlang is that it implements strings internally as linked lists of integer character codes, allowing strings of arbitrarily long length. We don't often have to think about string lengths, but there is one case when it is critically import to length check, and truncate, strings: when passing them to a SQL database through ODBC.
+            </p>
+            <p>Since the Erlang ODBC tool relies on a driver written in unmanaged C code, you absolutely have to be sure of the string length when passing strings as parameters to a query. If you pass a string that is longer than you've indicated as the SQL parameter length, a buffer overflow will occur outside the Erlang VM, causing the entire runtime to block.
+            </p>
+            <p>The following example query will cause a buffer overflow to crash the runtime because the SQL parameter is declared as <code>VARCHAR(3)</code> but the parameter value <code>"Canada"</code> is six characters long:
+            <p>
+            <pre class="brush: erlang;">
+                cause_buffer_overflow() -> %Store the full country name into a field expecting an ISO code.
+                    Params = [{{sql_varchar, 3}, ["Canada"]}],
+                    Sql = "INSERT INTO country(iso_code) VALUES(?);",
+                    Connection = connect(),
+                    odbc:param_query(Connection, Sql, Params).
+            </pre>
+            <p><img src="images/odbc_server_buffer_overrun.png" title="A buffer overflow in the ODBC server." class="floatright w400" />
+            When we run this code, a Windows OS dialog box will alert us of the crash, and the Erlang runtime system will block until the dialog box is dismissed. I've found that on production servers, the Erlang system simply waits until a human logs in to check on things (which could be several days after the error) and then must be restarted anyway to resume normal operation.
+            </p>
+            <p>To prevent this problem, you must be absolutely sure that you never pass a parameter value whose length exceeds the declared length of the SQL parameter. Often, that means you'll need to truncate strings in your Erlang code, since the SQL type (and maximum length) has already been determined in the database:                
+            </p>
+            <pre class="brush: erlang;">
+                cause_buffer_overflow() ->
+                    Country = truncate("Canada", 3), %Prevents buffer overflow!
+                    Params = [{{sql_varchar, 3}, [Country]}],
+                    Sql = "INSERT INTO country(iso_code) VALUES(?);",
+                    Connection = connect(),
+                    odbc:param_query(Connection, Sql, Params).
+
+                truncate(_Any, 0) ->
+                    [];
+                truncate(String, MaxLength) when 
+                        is_list(String), 
+                        is_integer(MaxLength) ->
+                    case MaxLength < 0 of
+                        true -> "";
+                        false ->
+                            truncate(String, length(String), MaxLength)
+                    end.
+
+                truncate(String, Length, MaxLength) when 
+                        is_list(String), 
+                        is_integer(Length), 
+                        is_integer(MaxLength) ->
+                    case Length =< MaxLength of
+                        true -> String;
+                        false ->
+                            string:sub_string(String, 1, MaxLength)
+                    end.
+            </pre>
+            <p></p>
             
+            <h3>Large Text String Truncation</h3>
+            <p>When retrieving large columns from the database the ODBC driver will silently corrupt values that are larger than 8001 characters. The reason is that the column length in the driver is <a href="https://github.com/erlang/otp/blob/maint/lib/odbc/c_src/odbcserver.c#L1313">set arbitrarily to a limit of 8001 characters</a>.
+            </p>
+
+            <h3>Unicode Character Encodings</h3>
+            <p>A wise man <a href="http://www.joelonsoftware.com/articles/Unicode.html">once wrote</a> that "it does not make sense to have a string without knowing what encoding it uses." This goes doubly when trying to send strings as SQL parameters from your Erlang application to a SQL database. In particular, the default <a href="http://en.wikipedia.org/wiki/Endianness">endianness</a> of Unicode characters will likely be different in your Erlang system and your SQL server installation, so you must take care to properly encode Unicode strings before storing them. Compare the following two SQL parameters created in an Erlang program:
+            </p>
+            <pre class="brush: erlang;">
+                Params = [
+                  %First parameter: URL as a plain ASCII string
+                  {
+                    {sql_varchar, ?URL_MAX_LENGTH}, 
+                    [string_ext:truncate(Url, ?URL_MAX_LENGTH)]
+                  },
+                  %Second parameter: Content as a Unicode string
+                  {
+                    {sql_wlongvarchar, byte_size(Content)}, 
+                    [unicode:characters_to_binary(Content, Encoding, {utf16, little})]
+                  }
+                 ]
+            </pre>
+            <p>The first parameter, <code>Url</code>, is treated as a plain old ASCII string in both systems, so it doesn't require any special treatment to store the correct value. The second parameter, <code>Content</code>, is a different case. Because Erlang and SQL Server store Unicode values in different binary formats, we need to manually convert the Erlang representation to the correct format for SQL by calling <code>characters_to_binary/3</code>. Note that here, the <code>Encoding</code> variable contains an atom representing the detected encoding of the <code>Content</code> string. For example, if this was part of a web crawling system, you might detect the current encoding from the response headers or the page meta fields.
+            <p>
+
+
+            <h3>Support for NVARCHAR(MAX)</h3>
+            <p>It's not immediately obvious from reading the <a href="http://www.erlang.org/doc/apps/odbc/odbc.pdf">ODBC reference manual</a> how to correctly handle a SQL <code>NVARCHAR(MAX)</code> column in Erlang. To do so is actually fairly easy. First, make sure that your string is not longer than 2^31-1 bytes (2 GB), which is the maximum size allowed in SQL Server. Next, declare your SQL parameter as a <code>sql_wlongvarchar</code> with the length set to the string length. For example, the following Unicode string is correctly stored in SQL Server:
+            </p>
+            <pre class="brush: erlang;">
+                Params = [                
+                  {
+                    {sql_wlongvarchar, byte_size(Content)}, 
+                    [unicode:characters_to_binary(Content, utf8, {utf16, little})]
+                  }
+                 ]
+            </pre>
+            <p>Note that using <code>VARCHAR(MAX)</code> rather than <code>NVARCHAR(MAX)</code> is not feasible since the support for this type, though documented, does not actually seem to work in practice. (If you have figured out how to make it work, please let me know!)
+            </p>
+
+
+            <h3>Sequentializing IO Calls Anti-Pattern</h3>
+            <p>When starting out with Erlang ODBC it can be tempting to sequentialize calls to the database. Suppose that you have a large group of working processes that all need to store results to the database when they finish computing, and so you decide to implement a repository as a <code>gen_server</code> that will accept messages from the workers and store the results of these computations in the database one at a time.             
+            </p>
+            <p>Doing so will usually lead to the repository's mailbox being flooded with messages, since the database IO is almost certainly a longer operation than the computations. The more worker processes you have, the worse the situation becomes. For example, with 10 workers the database call must take no longer than 1/10<sup>th</sup> as long as each computation, for your repository to keep up over the long term.               
+            </p>
+            <p>If you find yourself considering this approach, remember that SQL Server is <em>really</em> good at handling concurrent operations. By contrast, Erlang has no built-in mechanism to limit or handle an overflowing process mailbox. By simply making the database call from inside each worker process, you introduce natural rate limiting into the system and avoid swamping any single individual process (you also avoid introducing the complexity of rate limiting, back-off, and other similar schemes into your application).
+            </p>
+            
+            <h3>ODBC 3.0 Incompatibility</h3>
+            <p class="alert alert-danger">
+                <span class="icon fa-warning"></span> 
+                Warning! You've entered the danger zone. If you recompile your SQL drivers, you may break things. Use caution and only attempt what you know you can repair in the event of a major problem.
+            </p>
+
+            <p>The erlang odbcserver claims to be an ODBC 3.0 client. However, it does not correctly handle <code>SQL_NO_DATA</code> results when performing a <code>DELETE</code> or <code>UPDATE</code> that does not match any rows (<a href="http://msdn.microsoft.com/en-us/library/ms715424(v=vs.85).aspx">http://msdn.microsoft.com/en-us/library/ms715424(v=vs.85).aspx</a>). These queries will generate <code>{error, "XXXX"}</code> instead of <code>{updated, 0}</code> results.</p>
+            <p>One work around to fix this is to patch (break) the particular ODBC driver. For example the PostgreSQL driver can be fixed by patching <code>#if (ODBCVER >= 0x0300)</code> to <code>#if 0</code> in <code>execute.c</code>:</p>
+            <pre class="brush: cpp;">               
+                #if (ODBCVER >= 0x0300)
+                                EnvironmentClass *env = (EnvironmentClass *) CC_get_env(conn);
+                                const char *cmd = QR_get_command(res);
+                                SQLLEN  start_row;
+                                if (start_row = stmt->exec_start_row, start_row < 0)
+                                        start_row = 0;
+
+                                if (retval == SQL_SUCCESS &&
+                                    NULL != cmd &&
+                                    start_row >= end_row &&
+                                    NULL != env &&
+                                    EN_is_odbc3(env))
+                                {
+                                        int     count;
+
+                                        if (sscanf(cmd , "UPDATE %d", &count) == 1)
+                                                ;
+                                        else if (sscanf(cmd , "DELETE %d", &count) == 1)
+                                                ;
+                                        else
+                                                count = -1;
+                                        if (0 == count)
+                                                retval = SQL_NO_DATA;
+                                }
+                #endif /* ODBCVER */                
+            </pre>
         </div>
-        <!--
-        <div class="6u 12u(2)">
 
-            <section class="box special">
-                <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-                <h3>Accumsan integer</h3>
-                <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button alt">Learn More</a></li>
-                </ul>
-            </section>
+    </section>
 
+    <section id="contribute" class="one dark cover">
+        <div class="container"> 
+            <header>
+                <h2>Help Improve This Guide!</h2>
+            </header>
+            <p>Have you found a typo or something that isn't as clear as it could be? Perhaps you have a tip of your own to add to the guide? We would be most grateful if you would <a href="https://github.com/colefichter/erlang-odbc-tips" title="Visit the GitHub repository to submit a pull request">submit a pull request to the github repository</a> for this guide.
+            </p>
         </div>
-        -->
-    </div>
+    </section>
 
-</section>
+</div>
+
 
 <%= partial :"partials/footer" %>
